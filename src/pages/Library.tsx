@@ -55,11 +55,11 @@ const stories = [
   },
   {
     id: 6,
-    title: "Tenali Rama and the Cat",
-    category: "Humor",
-    readingTime: "6 min",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400",
-    description: "Tenali Rama outsmarts the king with his wit.",
+    title: "The Monkey and the Crocodile",
+    category: "Friendship",
+    readingTime: "8 min",
+    image: "https://images.unsplash.com/photo-1501286353178-1ec881214838?w=400",
+    description: "A friendship tale between a clever monkey and a crocodile.",
     difficulty: "Medium"
   },
   {
@@ -96,6 +96,96 @@ const stories = [
     readingTime: "8 min",
     image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400",
     description: "A small train overcomes challenges with determination.",
+    difficulty: "Easy"
+  },
+  {
+    id: 11,
+    title: "The Lion and the Mouse",
+    category: "Friendship",
+    readingTime: "6 min",
+    image: "https://images.unsplash.com/photo-1551969014-7d2c4cddf0b6?w=400",
+    description: "A tiny mouse saves a mighty lion in this classic tale.",
+    difficulty: "Easy"
+  },
+  {
+    id: 12,
+    title: "The Magic Carpet Adventure",
+    category: "Adventure",
+    readingTime: "12 min",
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400",
+    description: "Two children discover a flying carpet in their attic.",
+    difficulty: "Medium"
+  },
+  {
+    id: 13,
+    title: "The Helpful Ant Colony",
+    category: "Teamwork",
+    readingTime: "7 min",
+    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400",
+    description: "How teamwork helped ants save their home from flood.",
+    difficulty: "Easy"
+  },
+  {
+    id: 14,
+    title: "The Rainbow Bridge",
+    category: "Magic",
+    readingTime: "9 min",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400",
+    description: "A magical bridge appears after every storm.",
+    difficulty: "Medium"
+  },
+  {
+    id: 15,
+    title: "The Singing Nightingale",
+    category: "Music",
+    readingTime: "6 min",
+    image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400",
+    description: "A nightingale's song brings peace to a troubled kingdom.",
+    difficulty: "Easy"
+  },
+  {
+    id: 16,
+    title: "The Secret Garden",
+    category: "Nature",
+    readingTime: "11 min",
+    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400",
+    description: "Children discover a hidden garden with magical plants.",
+    difficulty: "Medium"
+  },
+  {
+    id: 17,
+    title: "The Wise Old Turtle",
+    category: "Wisdom",
+    readingTime: "8 min",
+    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400",
+    description: "An ancient turtle shares wisdom with young animals.",
+    difficulty: "Easy"
+  },
+  {
+    id: 18,
+    title: "The Flying Horse",
+    category: "Fantasy",
+    readingTime: "10 min",
+    image: "https://images.unsplash.com/photo-1452378174528-3090a4bba7b2?w=400",
+    description: "A young girl befriends a magical winged horse.",
+    difficulty: "Medium"
+  },
+  {
+    id: 19,
+    title: "The Lighthouse Keeper's Tale",
+    category: "Adventure",
+    readingTime: "9 min",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400",
+    description: "A lighthouse keeper helps ships navigate through storms.",
+    difficulty: "Medium"
+  },
+  {
+    id: 20,
+    title: "The Magic Paintbrush",
+    category: "Magic",
+    readingTime: "7 min",
+    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400",
+    description: "Everything painted with this brush comes to life!",
     difficulty: "Easy"
   }
 ];
