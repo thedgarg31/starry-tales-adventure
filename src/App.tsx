@@ -10,6 +10,7 @@ import Library from "./pages/Library";
 import Reader from "./pages/Reader";
 import Progress from "./pages/Progress";
 import Profile from "./pages/Profile";
+import Discussion from "./pages/Discussion";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/reader/:storyId" element={<Reader />} />
           <Route path="/progress" element={<Progress />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/discussion" element={<Discussion />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

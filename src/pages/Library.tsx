@@ -22,7 +22,7 @@ const stories = [
     title: "Birbal's Clever Solution",
     category: "Wisdom",
     readingTime: "7 min",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400",
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400",
     description: "How Birbal solved the mystery of the missing ring.",
     difficulty: "Medium"
   },
@@ -37,6 +37,24 @@ const stories = [
   },
   {
     id: 4,
+    title: "The Magical Banyan Tree",
+    category: "Adventure",
+    readingTime: "10 min",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400",
+    description: "Children discover a tree that can transport them anywhere.",
+    difficulty: "Medium"
+  },
+  {
+    id: 5,
+    title: "The Brave Little Sparrow",
+    category: "Courage",
+    readingTime: "6 min",
+    image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400",
+    description: "A small sparrow overcomes fear to save a kitten.",
+    difficulty: "Easy"
+  },
+  {
+    id: 6,
     title: "Tenali Rama and the Cat",
     category: "Humor",
     readingTime: "6 min",
@@ -45,13 +63,40 @@ const stories = [
     difficulty: "Medium"
   },
   {
-    id: 5,
-    title: "The Magical Banyan Tree",
-    category: "Adventure",
-    readingTime: "10 min",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400",
-    description: "Children discover a tree that can transport them anywhere.",
+    id: 7,
+    title: "The Dancing Peacock",
+    category: "Nature",
+    readingTime: "5 min",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400",
+    description: "A proud peacock learns about true beauty.",
+    difficulty: "Easy"
+  },
+  {
+    id: 8,
+    title: "The Generous Elephant",
+    category: "Kindness",
+    readingTime: "7 min",
+    image: "https://images.unsplash.com/photo-1439886183900-e79ec0057170?w=400",
+    description: "An elephant helps all forest animals during drought.",
+    difficulty: "Easy"
+  },
+  {
+    id: 9,
+    title: "The Mystery of the Talking Parrot",
+    category: "Mystery",
+    readingTime: "9 min",
+    image: "https://images.unsplash.com/photo-1501286353178-1ec881214838?w=400",
+    description: "Children solve the puzzle of a parrot's secret message.",
     difficulty: "Medium"
+  },
+  {
+    id: 10,
+    title: "The Little Train That Could",
+    category: "Perseverance",
+    readingTime: "8 min",
+    image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400",
+    description: "A small train overcomes challenges with determination.",
+    difficulty: "Easy"
   }
 ];
 
@@ -60,7 +105,7 @@ const Library = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const categories = ['All', 'Wisdom', 'Magic', 'Humor', 'Adventure', 'Friendship'];
+  const categories = ['All', 'Wisdom', 'Magic', 'Adventure', 'Courage', 'Humor', 'Nature', 'Kindness', 'Mystery', 'Perseverance'];
 
   const filteredStories = stories.filter(story => {
     const matchesSearch = story.title.toLowerCase().includes(searchTerm.toLowerCase()) ||

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -13,23 +13,183 @@ const storyContent: { [key: string]: any } = {
     pages: [
       {
         text: "Once upon a time, in a hot summer day, a thirsty crow was flying around looking for water. The sun was blazing hot, and the poor crow's throat was very dry.",
-        image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
-        audioUrl: "/audio/crow-page1.mp3"
+        images: [
+          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "Once upon a time, in a hot summer day, a thirsty crow was flying around looking for water."
       },
       {
         text: "Finally, the crow spotted a pot under a tree. He flew down quickly, hoping to find water. But when he looked inside, there was only a little bit of water at the bottom - too low for his beak to reach!",
-        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600",
-        audioUrl: "/audio/crow-page2.mp3"
+        images: [
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+        ],
+        narration: "Finally, the crow spotted a pot under a tree. He flew down quickly, hoping to find water."
       },
       {
         text: "The clever crow didn't give up. He noticed small stones scattered around the pot. 'I have an idea!' he thought. One by one, he picked up stones with his beak and dropped them into the pot.",
-        image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600",
-        audioUrl: "/audio/crow-page3.mp3"
+        images: [
+          "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600",
+          "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600"
+        ],
+        narration: "The clever crow didn't give up. He noticed small stones scattered around the pot."
       },
       {
         text: "As more stones fell into the pot, the water level began to rise higher and higher. Soon, the water reached the top where the crow could easily drink it. The wise crow had solved his problem with patience and cleverness!",
-        image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600",
-        audioUrl: "/audio/crow-page4.mp3"
+        images: [
+          "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600",
+          "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600"
+        ],
+        narration: "As more stones fell into the pot, the water level began to rise higher and higher."
+      }
+    ]
+  },
+  '2': {
+    title: "Birbal's Clever Solution",
+    pages: [
+      {
+        text: "Emperor Akbar had lost his precious ring in the royal garden. He was very upset and called for his wisest advisor, Birbal, to help find it.",
+        images: [
+          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600",
+          "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600"
+        ],
+        narration: "Emperor Akbar had lost his precious ring in the royal garden."
+      },
+      {
+        text: "Birbal looked around the garden and noticed all the gardeners working. He had a clever idea to find the real thief without accusing anyone directly.",
+        images: [
+          "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600",
+          "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600"
+        ],
+        narration: "Birbal looked around the garden and noticed all the gardeners working."
+      },
+      {
+        text: "Birbal gathered all the gardeners and gave each one a stick of the same length. 'The thief's stick will grow by two inches overnight,' he announced. 'Bring them back tomorrow morning.'",
+        images: [
+          "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600",
+          "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600"
+        ],
+        narration: "Birbal gathered all the gardeners and gave each one a stick of the same length."
+      },
+      {
+        text: "The next morning, one gardener came with a stick that was two inches shorter! He had cut it thinking it would grow. Birbal smiled - he had found the thief through his cleverness, and the ring was recovered.",
+        images: [
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600",
+          "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600"
+        ],
+        narration: "The next morning, one gardener came with a stick that was two inches shorter!"
+      }
+    ]
+  },
+  '3': {
+    title: "The Golden Fish",
+    pages: [
+      {
+        text: "A poor fisherman went to the river every day to catch fish for his family. One day, his net felt unusually heavy. When he pulled it up, he found a beautiful golden fish!",
+        images: [
+          "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600"
+        ],
+        narration: "A poor fisherman went to the river every day to catch fish for his family."
+      },
+      {
+        text: "The golden fish spoke in a magical voice: 'Please let me go, kind fisherman. In return, I will grant you three wishes!' The fisherman was amazed but agreed to set the fish free.",
+        images: [
+          "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600"
+        ],
+        narration: "The golden fish spoke in a magical voice: Please let me go, kind fisherman."
+      },
+      {
+        text: "For his first wish, the fisherman asked for food for his hungry family. Instantly, his small hut was filled with delicious meals. His family was overjoyed!",
+        images: [
+          "https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=600",
+          "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600"
+        ],
+        narration: "For his first wish, the fisherman asked for food for his hungry family."
+      },
+      {
+        text: "The wise fisherman used his remaining wishes to help others in his village. He wished for a well of fresh water and a school for children. The golden fish granted all wishes, and the village prospered forever.",
+        images: [
+          "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=600",
+          "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=600"
+        ],
+        narration: "The wise fisherman used his remaining wishes to help others in his village."
+      }
+    ]
+  },
+  '4': {
+    title: "The Magical Banyan Tree",
+    pages: [
+      {
+        text: "In a small village, there stood an ancient banyan tree that was said to be magical. Children often played under its shade, but they never knew its secret power.",
+        images: [
+          "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+        ],
+        narration: "In a small village, there stood an ancient banyan tree that was said to be magical."
+      },
+      {
+        text: "One day, Maya and Arjun discovered a glowing door in the tree trunk. When they touched it, the door opened to reveal a swirling portal of colors!",
+        images: [
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "One day, Maya and Arjun discovered a glowing door in the tree trunk."
+      },
+      {
+        text: "They stepped through the portal and found themselves in a land of floating islands and rainbow bridges. Friendly cloud creatures welcomed them to this magical realm.",
+        images: [
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600"
+        ],
+        narration: "They stepped through the portal and found themselves in a land of floating islands."
+      },
+      {
+        text: "After amazing adventures, the children returned home with hearts full of wonder. They learned that magic exists everywhere - you just need to believe and look for it!",
+        images: [
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600"
+        ],
+        narration: "After amazing adventures, the children returned home with hearts full of wonder."
+      }
+    ]
+  },
+  '5': {
+    title: "The Brave Little Sparrow",
+    pages: [
+      {
+        text: "In a bustling city, a little sparrow named Cheeku lived on a tall building. Unlike other sparrows, Cheeku was afraid of flying high and always stayed close to the ground.",
+        images: [
+          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "In a bustling city, a little sparrow named Cheeku lived on a tall building."
+      },
+      {
+        text: "One day, Cheeku saw a kitten stuck on a tree branch, crying for help. All the other animals were too big or too small to help, but Cheeku realized he might be just the right size.",
+        images: [
+          "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+        ],
+        narration: "One day, Cheeku saw a kitten stuck on a tree branch, crying for help."
+      },
+      {
+        text: "Despite his fear, Cheeku took a deep breath and flew higher than he ever had before. He reached the frightened kitten and guided her safely down to the ground.",
+        images: [
+          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
+          "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=600"
+        ],
+        narration: "Despite his fear, Cheeku took a deep breath and flew higher than he ever had before."
+      },
+      {
+        text: "From that day on, Cheeku was no longer afraid of heights. He learned that being brave doesn't mean you're not scared - it means you do the right thing even when you are scared.",
+        images: [
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600"
+        ],
+        narration: "From that day on, Cheeku was no longer afraid of heights."
       }
     ]
   }
@@ -50,6 +210,31 @@ const difficultWords: { [key: string]: any } = {
     meaning: 'Being calm and waiting without getting upset',
     pronunciation: 'PAY-shence',
     usage: 'She showed patience while waiting for her turn.'
+  },
+  'precious': {
+    meaning: 'Very valuable and important',
+    pronunciation: 'PRESH-us',
+    usage: 'The precious ring belonged to the queen.'
+  },
+  'cleverness': {
+    meaning: 'Being smart and quick to understand',
+    pronunciation: 'KLEV-er-ness',
+    usage: 'His cleverness helped him solve the puzzle.'
+  },
+  'magical': {
+    meaning: 'Having special powers like magic',
+    pronunciation: 'MAJ-i-kal',
+    usage: 'The magical wand could make things disappear.'
+  },
+  'ancient': {
+    meaning: 'Very old, from long ago',
+    pronunciation: 'AYN-shent',
+    usage: 'The ancient tree was hundreds of years old.'
+  },
+  'bustling': {
+    meaning: 'Very busy with lots of activity',
+    pronunciation: 'BUS-ling',
+    usage: 'The bustling market was full of people shopping.'
   }
 };
 
@@ -57,9 +242,12 @@ const Reader = () => {
   const { storyId } = useParams();
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
   const [showCelebration, setShowCelebration] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const speechSynthesis = window.speechSynthesis;
 
   const story = storyContent[storyId as string];
 
@@ -68,6 +256,10 @@ const Reader = () => {
       navigate('/library');
     }
   }, [story, navigate]);
+
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [currentPage]);
 
   if (!story) return null;
 
@@ -83,10 +275,8 @@ const Reader = () => {
 
   const handleNextPage = () => {
     if (isLastPage) {
-      // Story completed
       setShowCelebration(true);
       
-      // Update user stats
       const stats = JSON.parse(localStorage.getItem('storyscape_stats') || '{}');
       stats.stars = (stats.stars || 0) + 5;
       stats.completedStories = stats.completedStories || [];
@@ -117,12 +307,39 @@ const Reader = () => {
   };
 
   const toggleAudio = () => {
-    setIsPlaying(!isPlaying);
-    // In a real app, this would control audio playback
-    toast({
-      title: isPlaying ? "Audio Paused" : "Playing Audio",
-      description: isPlaying ? "Audio has been paused" : "Listen to the story narration"
-    });
+    if (isPlaying) {
+      speechSynthesis.cancel();
+      setIsPlaying(false);
+      toast({
+        title: "Audio Paused",
+        description: "Story narration has been paused"
+      });
+    } else {
+      const utterance = new SpeechSynthesisUtterance(currentPageData.narration);
+      utterance.rate = 0.8;
+      utterance.pitch = 1.1;
+      utterance.voice = speechSynthesis.getVoices().find(voice => voice.name.includes('Google') || voice.name.includes('Microsoft')) || speechSynthesis.getVoices()[0];
+      
+      utterance.onend = () => {
+        setIsPlaying(false);
+      };
+
+      speechSynthesis.speak(utterance);
+      setIsPlaying(true);
+      
+      toast({
+        title: "Playing Audio",
+        description: "Listen to the story narration"
+      });
+    }
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % currentPageData.images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => prev === 0 ? currentPageData.images.length - 1 : prev - 1);
   };
 
   const renderTextWithClickableWords = (text: string) => {
@@ -174,13 +391,46 @@ const Reader = () => {
         <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-2xl mb-6">
           <CardContent className="p-8">
             <div className="grid md:grid-cols-2 gap-8">
-              {/* Story Image */}
+              {/* Story Images */}
               <div className="order-2 md:order-1">
-                <img
-                  src={currentPageData.image}
-                  alt={`Page ${currentPage + 1}`}
-                  className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg"
-                />
+                <div className="relative">
+                  <img
+                    src={currentPageData.images[currentImageIndex]}
+                    alt={`Page ${currentPage + 1} - Image ${currentImageIndex + 1}`}
+                    className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg"
+                  />
+                  
+                  {currentPageData.images.length > 1 && (
+                    <>
+                      <Button
+                        onClick={prevImage}
+                        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2"
+                        size="sm"
+                      >
+                        <ArrowLeft className="w-4 h-4" />
+                      </Button>
+                      
+                      <Button
+                        onClick={nextImage}
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2"
+                        size="sm"
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                      </Button>
+                      
+                      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+                        {currentPageData.images.map((_: any, index: number) => (
+                          <div
+                            key={index}
+                            className={`w-2 h-2 rounded-full ${
+                              index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
               
               {/* Story Text */}
