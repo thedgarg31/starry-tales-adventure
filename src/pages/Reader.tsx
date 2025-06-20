@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -32,18 +31,18 @@ const storyContent: { [key: string]: any } = {
       {
         text: "The clever crow didn't give up. He noticed small stones scattered around the pot. 'I have an idea!' he thought. One by one, he picked up stones with his beak and dropped them into the pot.",
         images: [
-          "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600",
           "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600",
-          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600"
+          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600"
         ],
         narration: "The clever crow didn't give up. He noticed small stones scattered around the pot."
       },
       {
         text: "As more stones fell into the pot, the water level began to rise higher and higher. Soon, the water reached the top where the crow could easily drink it. The wise crow had solved his problem with patience and cleverness!",
         images: [
-          "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600",
-          "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600",
-          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600"
+          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
         ],
         narration: "As more stones fell into the pot, the water level began to rise higher and higher."
       }
@@ -96,9 +95,9 @@ const storyContent: { [key: string]: any } = {
       {
         text: "A poor fisherman went to the river every day to catch fish for his family. One day, his net felt unusually heavy. When he pulled it up, he found a beautiful golden fish!",
         images: [
-          "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600",
+          "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600",
           "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600",
-          "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600"
+          "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=600"
         ],
         narration: "A poor fisherman went to the river every day to catch fish for his family."
       },
@@ -228,7 +227,7 @@ const storyContent: { [key: string]: any } = {
       {
         text: "One day, a crocodile swam near the bank and struck up a friendship with the monkey. The kind monkey would drop mangoes into the water for his new friend to enjoy.",
         images: [
-          "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600",
+          "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=600",
           "https://images.unsplash.com/photo-1501286353178-1ec881214838?w=600",
           "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600"
         ],
@@ -237,7 +236,7 @@ const storyContent: { [key: string]: any } = {
       {
         text: "The crocodile's wife became jealous and demanded that her husband bring the monkey's heart for dinner. Reluctantly, the crocodile invited the monkey for a ride across the river.",
         images: [
-          "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600",
+          "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=600",
           "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600",
           "https://images.unsplash.com/photo-1501286353178-1ec881214838?w=600"
         ],
@@ -248,9 +247,173 @@ const storyContent: { [key: string]: any } = {
         images: [
           "https://images.unsplash.com/photo-1501286353178-1ec881214838?w=600",
           "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
-          "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600"
+          "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=600"
         ],
         narration: "The clever monkey quickly said, Oh! I left my heart back in the mango tree."
+      }
+    ]
+  },
+  '7': {
+    title: "The Dancing Peacock",
+    pages: [
+      {
+        text: "In a beautiful forest lived a proud peacock named Raja who thought he was the most beautiful bird in the world. He would spend hours admiring his colorful feathers in the pond.",
+        images: [
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600"
+        ],
+        narration: "In a beautiful forest lived a proud peacock named Raja who thought he was the most beautiful bird."
+      },
+      {
+        text: "One rainy day, Raja saw a little sparrow helping other birds find shelter. While Raja worried about his feathers getting wet, the sparrow worked tirelessly to help everyone.",
+        images: [
+          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+        ],
+        narration: "One rainy day, Raja saw a little sparrow helping other birds find shelter."
+      },
+      {
+        text: "When the rain stopped, all the forest animals gathered around the little sparrow to thank her. Raja realized that true beauty comes from kindness and helping others, not just colorful feathers.",
+        images: [
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+        ],
+        narration: "Raja realized that true beauty comes from kindness and helping others."
+      },
+      {
+        text: "From that day forward, Raja used his beautiful dance not just to show off, but to entertain and bring joy to all the forest creatures. He became the most beloved bird in the forest.",
+        images: [
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600"
+        ],
+        narration: "From that day forward, Raja used his beautiful dance to bring joy to all the forest creatures."
+      }
+    ]
+  },
+  '8': {
+    title: "The Generous Elephant",
+    pages: [
+      {
+        text: "In the heart of Africa lived Gaju, a kind elephant who was loved by all the animals in the savanna. He was always ready to help anyone in need with his great strength.",
+        images: [
+          "https://images.unsplash.com/photo-1439886183900-e79ec0057170?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "In the heart of Africa lived Gaju, a kind elephant who was loved by all the animals."
+      },
+      {
+        text: "One year, a terrible drought came to the savanna. All the rivers dried up and the animals couldn't find water anywhere. They were all very thirsty and worried.",
+        images: [
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600"
+        ],
+        narration: "One year, a terrible drought came to the savanna and all the rivers dried up."
+      },
+      {
+        text: "Gaju remembered a secret underground spring his grandmother had shown him years ago. He used his strong trunk and tusks to dig deep into the ground until fresh water bubbled up.",
+        images: [
+          "https://images.unsplash.com/photo-1439886183900-e79ec0057170?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600",
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600"
+        ],
+        narration: "Gaju used his strong trunk and tusks to dig deep until fresh water bubbled up."
+      },
+      {
+        text: "All the animals came to drink from Gaju's well. He made sure everyone got their share of water, even the tiniest insects. His generous heart had saved the entire savanna!",
+        images: [
+          "https://images.unsplash.com/photo-1439886183900-e79ec0057170?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "All the animals came to drink and Gaju made sure everyone got their share of water."
+      }
+    ]
+  },
+  '9': {
+    title: "The Mystery of the Talking Parrot",
+    pages: [
+      {
+        text: "In a small town lived siblings Priya and Rahul who loved solving puzzles. One day, they found a colorful parrot in their garden that could speak in riddles and rhymes.",
+        images: [
+          "https://images.unsplash.com/photo-1615835974426-2c0da2bf9afe?w=600",
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600",
+          "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=600"
+        ],
+        narration: "Priya and Rahul found a colorful parrot that could speak in riddles and rhymes."
+      },
+      {
+        text: "The parrot told them: 'Where books sleep and knowledge keeps, under the oldest tree that weeps, you'll find what the old man seeks.' The children were puzzled by this mysterious message.",
+        images: [
+          "https://images.unsplash.com/photo-1615835974426-2c0da2bf9afe?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600"
+        ],
+        narration: "The parrot gave them a mysterious riddle about books and an old tree."
+      },
+      {
+        text: "They realized the riddle was about the town library, which was built under a giant weeping willow tree. They found Mr. Kumar, the librarian, searching desperately for something.",
+        images: [
+          "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600",
+          "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600",
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600"
+        ],
+        narration: "They realized the riddle was about the town library under the weeping willow tree."
+      },
+      {
+        text: "Following the parrot's clues, they found Mr. Kumar's lost reading glasses hidden among the roots of the old tree. The grateful librarian revealed that the parrot belonged to his grandfather, a famous detective!",
+        images: [
+          "https://images.unsplash.com/photo-1615835974426-2c0da2bf9afe?w=600",
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600",
+          "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600"
+        ],
+        narration: "They found the lost glasses and learned the parrot belonged to a famous detective!"
+      }
+    ]
+  },
+  '10': {
+    title: "The Little Train That Could",
+    pages: [
+      {
+        text: "In a busy railway yard lived Chotu, a small blue train who dreamed of carrying passengers across the mountains. But everyone said he was too little for such a big job.",
+        images: [
+          "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600",
+          "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "In a railway yard lived Chotu, a small blue train who dreamed of carrying passengers."
+      },
+      {
+        text: "One stormy night, the big express train broke down on the mountain track. Hundreds of passengers were stranded, including families with young children who needed to get home.",
+        images: [
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600",
+          "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=600"
+        ],
+        narration: "One stormy night, the big express train broke down with passengers stranded."
+      },
+      {
+        text: "Chotu volunteered to help, even though the mountain track was steep and dangerous. 'I think I can, I think I can,' he puffed as he slowly climbed the mountain, carrying the grateful passengers.",
+        images: [
+          "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+        ],
+        narration: "Chotu volunteered to help, saying 'I think I can, I think I can' as he climbed."
+      },
+      {
+        text: "Against all odds, brave little Chotu successfully brought everyone safely home. From that day forward, he became the most trusted train on the mountain route, proving that size doesn't matter when you have courage!",
+        images: [
+          "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600",
+          "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "Chotu successfully brought everyone home and became the most trusted mountain train."
       }
     ]
   },
@@ -336,13 +499,300 @@ const storyContent: { [key: string]: any } = {
       }
     ]
   },
+  '13': {
+    title: "The Helpful Ant Colony",
+    pages: [
+      {
+        text: "In a peaceful meadow lived a colony of hardworking ants. They had built their home near a stream and worked together every day to gather food and take care of their community.",
+        images: [
+          "https://images.unsplash.com/photo-1542736036-cdf4f0cbb2dd?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600"
+        ],
+        narration: "In a peaceful meadow lived a colony of hardworking ants near a stream."
+      },
+      {
+        text: "One day, heavy rains caused the stream to overflow, threatening to flood their underground home. The water was rising quickly and all their food stores were in danger.",
+        images: [
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1542736036-cdf4f0cbb2dd?w=600"
+        ],
+        narration: "Heavy rains caused the stream to overflow, threatening their underground home."
+      },
+      {
+        text: "The queen ant called for all ants to work together. Some ants formed chains to pass food to safety, others built tiny dams with leaves and mud, while some carried the baby ants to higher ground.",
+        images: [
+          "https://images.unsplash.com/photo-1542736036-cdf4f0cbb2dd?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600"
+        ],
+        narration: "The queen ant called for teamwork to save food and build dams with leaves and mud."
+      },
+      {
+        text: "Through their amazing teamwork and cooperation, the ant colony successfully saved their home and all their winter food. They learned that when everyone works together, no challenge is too big to overcome.",
+        images: [
+          "https://images.unsplash.com/photo-1542736036-cdf4f0cbb2dd?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600"
+        ],
+        narration: "Through teamwork, the ant colony saved their home and learned that cooperation overcomes challenges."
+      }
+    ]
+  },
+  '14': {
+    title: "The Rainbow Bridge",
+    pages: [
+      {
+        text: "In a valley between two mountains, people could only cross from one side to the other by taking a long, dangerous path through the forest. Many wished for an easier way to visit their friends and family.",
+        images: [
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+        ],
+        narration: "In a valley between mountains, people took a dangerous path to cross to the other side."
+      },
+      {
+        text: "One day, after a terrible storm, something magical happened. A beautiful rainbow appeared, but this rainbow was different - it was solid and glowed with a soft, warm light.",
+        images: [
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600"
+        ],
+        narration: "After a storm, a magical rainbow appeared that was solid and glowed with warm light."
+      },
+      {
+        text: "A brave little girl named Meera was the first to step onto the rainbow bridge. To everyone's amazement, it held her weight perfectly! Soon, people from both sides were crossing safely.",
+        images: [
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600",
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "A brave girl named Meera was first to step on the rainbow bridge, and it held perfectly!"
+      },
+      {
+        text: "The rainbow bridge appeared after every storm, bringing communities together. The people learned that even after the darkest storms, something beautiful and hopeful can emerge to connect hearts.",
+        images: [
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "The rainbow bridge appeared after storms, teaching that beauty emerges after darkness."
+      }
+    ]
+  },
+  '15': {
+    title: "The Singing Nightingale",
+    pages: [
+      {
+        text: "In a kingdom where people had forgotten how to smile, lived a small nightingale with the most beautiful voice. The king was sad and had banned all music and laughter from his land.",
+        images: [
+          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
+          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600",
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600"
+        ],
+        narration: "In a kingdom where people forgot to smile, lived a nightingale with a beautiful voice."
+      },
+      {
+        text: "Every night, the little nightingale would sing secret lullabies from her tree outside the palace walls. Her melodies were so sweet that they could heal broken hearts and bring peace to troubled minds.",
+        images: [
+          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+        ],
+        narration: "Every night, the nightingale sang secret lullabies that could heal hearts and bring peace."
+      },
+      {
+        text: "One sleepless night, the sad king heard the nightingale's song drifting through his window. For the first time in years, tears of joy rolled down his cheeks and he remembered what happiness felt like.",
+        images: [
+          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600",
+          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600"
+        ],
+        narration: "The sad king heard the song and for the first time in years, felt happiness."
+      },
+      {
+        text: "The next morning, the king lifted the ban on music and invited the nightingale to live in the royal garden. Her songs brought joy back to the entire kingdom, and people remembered how to laugh and sing again.",
+        images: [
+          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600"
+        ],
+        narration: "The king lifted the ban on music and the nightingale's songs brought joy to the kingdom."
+      }
+    ]
+  },
+  '16': {
+    title: "The Secret Garden",
+    pages: [
+      {
+        text: "Behind the old school building, hidden by tall walls and thick vines, lay a forgotten garden that had been locked away for many years. No one remembered what treasures it might hold.",
+        images: [
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "Behind the old school lay a forgotten garden locked away for many years."
+      },
+      {
+        text: "Three curious students - Rohan, Kavya, and Arpit - discovered a rusty key while cleaning the school basement. They wondered what door it might open and decided to explore.",
+        images: [
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600"
+        ],
+        narration: "Three students found a rusty key and decided to explore what it might open."
+      },
+      {
+        text: "The key opened the garden gate, revealing a magical place where flowers sang soft melodies, trees bore fruits of different seasons, and butterflies painted colorful patterns in the air.",
+        images: [
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "The key opened a magical garden where flowers sang and trees bore fruits of all seasons."
+      },
+      {
+        text: "The children learned that the garden thrived on care and kindness. They tended to it every day, and soon their school became known for having the most beautiful and magical garden in the world.",
+        images: [
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600",
+          "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600"
+        ],
+        narration: "The children tended the garden with care, making their school famous for its magical beauty."
+      }
+    ]
+  },
+  '17': {
+    title: "The Wise Old Turtle",
+    pages: [
+      {
+        text: "In a crystal-clear pond lived Dadaji, an ancient turtle who was 200 years old. All the young animals in the forest came to him for advice because he had seen and learned so much in his long life.",
+        images: [
+          "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+        ],
+        narration: "In a crystal pond lived Dadaji, a 200-year-old turtle who gave advice to young animals."
+      },
+      {
+        text: "One day, a young rabbit came crying to Dadaji. 'I lost the race again! I'm not fast enough, not smart enough, not good enough at anything!' she sobbed.",
+        images: [
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600",
+          "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+        ],
+        narration: "A young rabbit came crying that she wasn't fast or smart or good enough at anything."
+      },
+      {
+        text: "Dadaji smiled gently and said, 'My dear, I am the slowest animal in this forest, yet everyone comes to me for wisdom. Speed isn't everything. Your kind heart and gentle nature are your greatest strengths.'",
+        images: [
+          "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=600",
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600"
+        ],
+        narration: "Dadaji said that being slow didn't matter, and her kind heart was her greatest strength."
+      },
+      {
+        text: "The rabbit learned that everyone has unique gifts and that comparison steals joy. From that day, she helped other animals discover their own special talents, becoming the forest's beloved encourager.",
+        images: [
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600",
+          "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+        ],
+        narration: "The rabbit learned everyone has unique gifts and became the forest's beloved encourager."
+      }
+    ]
+  },
+  '18': {
+    title: "The Flying Horse",
+    pages: [
+      {
+        text: "High in the mountains lived Tara, a lonely girl whose only friend was her imagination. She dreamed of adventures and magical creatures, but her remote village had no other children to play with.",
+        images: [
+          "https://images.unsplash.com/photo-1452378174528-3090a4bba7b2?w=600",
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "High in the mountains lived Tara, a lonely girl who dreamed of magical adventures."
+      },
+      {
+        text: "One misty morning, Tara discovered a beautiful white horse with enormous feathered wings trapped in a thorny bush. The magnificent creature looked at her with kind, intelligent eyes.",
+        images: [
+          "https://images.unsplash.com/photo-1452378174528-3090a4bba7b2?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+        ],
+        narration: "Tara found a white horse with feathered wings trapped in thorny bushes."
+      },
+      {
+        text: "Carefully, Tara freed the winged horse from the thorns and bandaged his injured wing with strips from her scarf. The grateful horse, whose name was Vayu, offered to take her on a flying adventure.",
+        images: [
+          "https://images.unsplash.com/photo-1452378174528-3090a4bba7b2?w=600",
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "Tara freed and healed Vayu the winged horse, who offered her a flying adventure."
+      },
+      {
+        text: "Together, Tara and Vayu soared through clouds and visited faraway lands, making friends with children from different cultures. Tara learned that kindness creates the most magical friendships of all.",
+        images: [
+          "https://images.unsplash.com/photo-1452378174528-3090a4bba7b2?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600"
+        ],
+        narration: "Tara and Vayu visited faraway lands and learned that kindness creates magical friendships."
+      }
+    ]
+  },
+  '19': {
+    title: "The Lighthouse Keeper's Tale",
+    pages: [
+      {
+        text: "On a rocky island stood a tall lighthouse, where old Captain Ravi kept the light burning to guide ships safely to shore. He had been the lighthouse keeper for forty years, through calm seas and terrible storms.",
+        images: [
+          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600"
+        ],
+        narration: "On a rocky island, Captain Ravi kept the lighthouse burning for forty years."
+      },
+      {
+        text: "One night, the worst storm in decades struck the coast. Giant waves crashed against the lighthouse and strong winds howled like wild beasts, threatening to extinguish the vital light.",
+        images: [
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600",
+          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600"
+        ],
+        narration: "The worst storm in decades struck with giant waves and howling winds."
+      },
+      {
+        text: "Despite the danger, Captain Ravi climbed the lighthouse steps again and again to keep the beacon shining. He could see a passenger ship struggling against the waves, desperately needing guidance to safety.",
+        images: [
+          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600"
+        ],
+        narration: "Captain Ravi climbed the lighthouse steps to keep the beacon shining for a struggling ship."
+      },
+      {
+        text: "Thanks to Captain Ravi's dedication, the ship with 200 passengers reached the harbor safely. The grateful captain visited the lighthouse to thank the hero who had risked everything to save them all.",
+        images: [
+          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600",
+          "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+        ],
+        narration: "Thanks to Captain Ravi's dedication, 200 passengers reached harbor safely."
+      }
+    ]
+  },
   '20': {
     title: "The Magic Paintbrush",
     pages: [
       {
         text: "Young Priya loved to paint but her family was too poor to buy proper art supplies. She painted with mud and water on rocks, dreaming of having real paints and brushes.",
         images: [
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600",
+          "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600",
           "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600",
           "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
         ],
@@ -352,7 +802,7 @@ const storyContent: { [key: string]: any } = {
         text: "One day, an old artist saw Priya's talent and gave her a special paintbrush. 'This is magical,' he said with a wink. 'Paint with your heart, and amazing things will happen.'",
         images: [
           "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600",
+          "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600",
           "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600"
         ],
         narration: "One day, an old artist saw Priya's talent and gave her a special paintbrush."
@@ -362,7 +812,7 @@ const storyContent: { [key: string]: any } = {
         images: [
           "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
           "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600"
+          "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600"
         ],
         narration: "When Priya painted a bird, it fluttered off the canvas and began to sing!"
       },
@@ -371,7 +821,7 @@ const storyContent: { [key: string]: any } = {
         images: [
           "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
           "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=600",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600"
+          "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600"
         ],
         narration: "Priya used her magic paintbrush to help her village with wells, fruit trees, and beautiful gardens."
       }

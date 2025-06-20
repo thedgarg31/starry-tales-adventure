@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -31,7 +30,7 @@ const stories = [
     title: "The Golden Fish",
     category: "Magic",
     readingTime: "8 min",
-    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400",
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400",
     description: "A fisherman finds a magical golden fish that grants wishes.",
     difficulty: "Easy"
   },
@@ -85,7 +84,7 @@ const stories = [
     title: "The Mystery of the Talking Parrot",
     category: "Mystery",
     readingTime: "9 min",
-    image: "https://images.unsplash.com/photo-1501286353178-1ec881214838?w=400",
+    image: "https://images.unsplash.com/photo-1615835974426-2c0da2bf9afe?w=400",
     description: "Children solve the puzzle of a parrot's secret message.",
     difficulty: "Medium"
   },
@@ -94,7 +93,7 @@ const stories = [
     title: "The Little Train That Could",
     category: "Perseverance",
     readingTime: "8 min",
-    image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400",
+    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400",
     description: "A small train overcomes challenges with determination.",
     difficulty: "Easy"
   },
@@ -121,7 +120,7 @@ const stories = [
     title: "The Helpful Ant Colony",
     category: "Teamwork",
     readingTime: "7 min",
-    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400",
+    image: "https://images.unsplash.com/photo-1542736036-cdf4f0cbb2dd?w=400",
     description: "How teamwork helped ants save their home from flood.",
     difficulty: "Easy"
   },
@@ -130,7 +129,7 @@ const stories = [
     title: "The Rainbow Bridge",
     category: "Magic",
     readingTime: "9 min",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
     description: "A magical bridge appears after every storm.",
     difficulty: "Medium"
   },
@@ -157,7 +156,7 @@ const stories = [
     title: "The Wise Old Turtle",
     category: "Wisdom",
     readingTime: "8 min",
-    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400",
+    image: "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=400",
     description: "An ancient turtle shares wisdom with young animals.",
     difficulty: "Easy"
   },
@@ -175,7 +174,7 @@ const stories = [
     title: "The Lighthouse Keeper's Tale",
     category: "Adventure",
     readingTime: "9 min",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400",
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400",
     description: "A lighthouse keeper helps ships navigate through storms.",
     difficulty: "Medium"
   },
@@ -184,7 +183,7 @@ const stories = [
     title: "The Magic Paintbrush",
     category: "Magic",
     readingTime: "7 min",
-    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400",
+    image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400",
     description: "Everything painted with this brush comes to life!",
     difficulty: "Easy"
   }
