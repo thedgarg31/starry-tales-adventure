@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'fredoka': ['Fredoka', 'sans-serif'],
+				'comic': ['Comic Neue', 'cursive'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -84,11 +89,32 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'bounce-gentle': {
+					'0%, 100%': {
+						transform: 'translateY(0)',
+						animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)'
+					},
+					'50%': {
+						transform: 'translateY(-10px)',
+						animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)'
+					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-20px)' }
+				},
+				'glow': {
+					'0%, 100%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.5)' },
+					'50%': { boxShadow: '0 0 30px rgba(139, 92, 246, 0.8)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'bounce-gentle': 'bounce-gentle 2s infinite',
+				'float': 'float 3s ease-in-out infinite',
+				'glow': 'glow 2s ease-in-out infinite alternate'
 			}
 		}
 	},

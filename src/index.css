@@ -1,6 +1,10 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Import custom fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Comic+Neue:wght@300;400;700&display=swap');
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 
@@ -37,19 +41,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -99,5 +96,140 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Fredoka', sans-serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Comic Neue', cursive;
+    font-weight: 700;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #f59e0b, #ec4899);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #d97706, #db2777);
+  }
+
+  /* Selection color */
+  ::selection {
+    background: rgba(139, 92, 246, 0.3);
+    color: inherit;
+  }
+}
+
+/* Custom animations and effects */
+@layer components {
+  .glass-effect {
+    @apply bg-white/20 backdrop-blur-sm border border-white/20;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+
+  .card-gradient {
+    @apply bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-800/80 dark:to-gray-900/60;
+  }
+
+  /* Button effects */
+  .btn-magical {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+
+  .btn-magical::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .btn-magical:hover::before {
+    transform: translateX(100%);
+  }
+
+  /* Story text effects */
+  .story-text {
+    @apply text-lg leading-relaxed;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Mascot animations */
+  .mascot-hover {
+    @apply transition-transform duration-300 hover:scale-110;
+  }
+
+  .mascot-celebrate {
+    animation: bounce-gentle 0.6s ease-in-out 3;
+  }
+}
+
+/* Responsive typography */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Focus states for accessibility */
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  @apply outline-none ring-2 ring-purple-400 ring-offset-2 ring-offset-white dark:ring-offset-gray-800;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
   }
 }
