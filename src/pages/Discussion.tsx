@@ -2,207 +2,363 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { ArrowLeft, Video, VideoOff, Mic, MicOff, Users, Send, Share2 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { 
+  ArrowLeft, 
+  MessageCircle, 
+  Video, 
+  VideoOff, 
+  Mic, 
+  MicOff, 
+  Share2, 
+  Users, 
+  UserPlus, 
+  Heart, 
+  Send,
+  Monitor,
+  MonitorOff,
+  BookOpen,
+  Star,
+  Trophy,
+  Camera,
+  CameraOff,
+  Link,
+  Settings,
+  Volume2,
+  VolumeX
+} from 'lucide-react';
 import MascotOwl from '@/components/MascotOwl';
-import { toast } from '@/hooks/use-toast';
+
+interface Message {
+  id: string;
+  user: string;
+  text: string;
+  timestamp: Date;
+  type: 'text' | 'link' | 'image';
+}
+
+interface Friend {
+  id: string;
+  name: string;
+  avatar: string;
+  isOnline: boolean;
+  isReading: boolean;
+}
 
 const Discussion = () => {
   const navigate = useNavigate();
   const [isVideoOn, setIsVideoOn] = useState(false);
   const [isAudioOn, setIsAudioOn] = useState(false);
   const [isScreenSharing, setIsScreenSharing] = useState(false);
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([
-    { id: 1, user: 'Reading Buddy', text: 'Welcome to the discussion room! Share your favorite story moments here!', time: '10:30 AM' },
-    { id: 2, user: 'Alex', text: 'I loved the wise crow story! It taught me to never give up.', time: '10:32 AM' }
-  ]);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const toggleVideo = async () => {
-    if (!isVideoOn) {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-        }
-        setIsVideoOn(true);
-        toast({
-          title: "Camera On",
-          description: "Your camera is now active!"
-        });
-      } catch (error) {
-        toast({
-          title: "Camera Error",
-          description: "Could not access camera. Please check permissions."
-        });
-      }
-    } else {
-      if (videoRef.current && videoRef.current.srcObject) {
-        const stream = videoRef.current.srcObject as MediaStream;
-        stream.getTracks().forEach(track => track.stop());
-        videoRef.current.srcObject = null;
-      }
-      setIsVideoOn(false);
-      toast({
-        title: "Camera Off",
-        description: "Your camera is now off."
-      });
+  const [isReadingTogether, setIsReadingTogether] = useState(false);
+  const [currentMessage, setCurrentMessage] = useState('');
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: '1',
+      user: 'Emma',
+      text: 'Hi everyone! Who wants to read "The Wise Crow" together? 🦉',
+      timestamp: new Date(Date.now() - 300000),
+      type: 'text'
+    },
+    {
+      id: '2',
+      user: 'Liam',
+      text: 'Me! I love that story! Can we start in 5 minutes?',
+      timestamp: new Date(Date.now() - 240000),
+      type: 'text'
+    },
+    {
+      id: '3',
+      user: 'Sophia',
+      text: 'https://starrytales.com/story/wise-crow',
+      timestamp: new Date(Date.now() - 180000),
+      type: 'link'
     }
-  };
+  ]);
+  const [friends, setFriends] = useState<Friend[]>([
+    { id: '1', name: 'Emma', avatar: '👧', isOnline: true, isReading: false },
+    { id: '2', name: 'Liam', avatar: '👦', isOnline: true, isReading: true },
+    { id: '3', name: 'Sophia', avatar: '👧', isOnline: false, isReading: false },
+    { id: '4', name: 'Noah', avatar: '👦', isOnline: true, isReading: false },
+    { id: '5', name: 'Olivia', avatar: '👧', isOnline: true, isReading: false }
+  ]);
+  const [activeTab, setActiveTab] = useState<'chat' | 'friends' | 'reading'>('chat');
+  const [showAddFriend, setShowAddFriend] = useState(false);
+  const [newFriendName, setNewFriendName] = useState('');
+  
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const toggleAudio = () => {
-    setIsAudioOn(!isAudioOn);
-    toast({
-      title: isAudioOn ? "Microphone Off" : "Microphone On",
-      description: isAudioOn ? "Your microphone is muted." : "Your microphone is active!"
-    });
-  };
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
-  const toggleScreenShare = () => {
-    setIsScreenSharing(!isScreenSharing);
-    toast({
-      title: isScreenSharing ? "Screen Share Stopped" : "Screen Share Started",
-      description: isScreenSharing ? "You stopped sharing your screen." : "You're now sharing your screen!"
-    });
-  };
-
-  const sendMessage = () => {
-    if (message.trim()) {
-      const newMessage = {
-        id: messages.length + 1,
+  const handleSendMessage = () => {
+    if (currentMessage.trim()) {
+      const newMessage: Message = {
+        id: Date.now().toString(),
         user: 'You',
-        text: message,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        text: currentMessage,
+        timestamp: new Date(),
+        type: 'text'
       };
       setMessages([...messages, newMessage]);
-      setMessage('');
+      setCurrentMessage('');
     }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      sendMessage();
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
+
+  const toggleVideo = () => {
+    setIsVideoOn(!isVideoOn);
+    // Here you would implement actual video functionality
+  };
+
+  const toggleAudio = () => {
+    setIsAudioOn(!isAudioOn);
+    // Here you would implement actual audio functionality
+  };
+
+  const toggleScreenShare = () => {
+    setIsScreenSharing(!isScreenSharing);
+    // Here you would implement actual screen sharing functionality
+  };
+
+  const startReadingTogether = () => {
+    setIsReadingTogether(true);
+    // Here you would implement synchronized reading functionality
+  };
+
+  const addFriend = () => {
+    if (newFriendName.trim()) {
+      const newFriend: Friend = {
+        id: Date.now().toString(),
+        name: newFriendName,
+        avatar: '👤',
+        isOnline: true,
+        isReading: false
+      };
+      setFriends([...friends, newFriend]);
+      setNewFriendName('');
+      setShowAddFriend(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-pink-50 to-blue-100 dark:from-purple-900 dark:via-blue-900 dark:to-indigo-900 p-4">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen p-4 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 bedtime-gradient-soft opacity-30"></div>
+      <div className="absolute top-20 left-10 w-20 h-20 bg-purple-300/20 rounded-full blur-xl"></div>
+      <div className="absolute top-40 right-20 w-32 h-32 bg-pink-300/20 rounded-full blur-xl"></div>
+      <div className="absolute bottom-20 left-1/4 w-24 h-24 bg-blue-300/20 rounded-full blur-xl"></div>
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-6">
-          <Button
-            onClick={() => navigate('/')}
-            variant="ghost"
-            size="sm"
-            className="rounded-full p-2 hover:bg-white/20"
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
-          
-          <div className="flex items-center gap-3">
-            <MascotOwl size={40} />
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">
-                Discussion Room
-              </h1>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">Read together and share stories!</p>
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-4">
+            <Button
+              onClick={() => navigate('/')}
+              variant="ghost"
+              size="sm"
+              className="rounded-full p-2 hover:bg-white/20 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </Button>
+            
+            <div className="flex items-center gap-3">
+              <MascotOwl size={40} className="animate-float-gentle" />
+              <div>
+                <h1 className="text-3xl font-bold text-gradient">
+                  Reading Community
+                </h1>
+                <p className="text-gray-600 dark:text-gray-300 font-medium">Connect with friends and read together!</p>
+              </div>
             </div>
-          </div>
-
-          <div className="ml-auto flex items-center gap-2 text-gray-600 dark:text-gray-400">
-            <Users className="w-5 h-5" />
-            <span className="text-sm">3 readers online</span>
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
-          {/* Video Section */}
-          <div className="lg:col-span-2">
-            <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-lg mb-4">
-              <CardContent className="p-6">
-                <div className="aspect-video bg-gray-900 rounded-lg mb-4 relative overflow-hidden">
-                  {isVideoOn ? (
-                    <video
-                      ref={videoRef}
-                      autoPlay
-                      muted
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center h-full">
-                      <div className="text-center text-white">
-                        <Video className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                        <p className="text-lg">Camera is off</p>
+        {/* Main Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left Panel - Friends & Community */}
+          <div className="lg:col-span-1 space-y-6">
+            {/* Friends List */}
+            <Card className="story-card">
+              <CardHeader className="pb-4">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-xl font-bold text-gray-800 dark:text-gray-200">
+                    Friends Online
+                  </CardTitle>
+                  <Button
+                    onClick={() => setShowAddFriend(true)}
+                    size="sm"
+                    className="rounded-full bg-purple-500 hover:bg-purple-600 text-white"
+                  >
+                    <UserPlus className="w-4 h-4" />
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {friends.map(friend => (
+                  <div key={friend.id} className="flex items-center gap-3 p-3 rounded-2xl bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm">
+                    <div className="relative">
+                      <div className="text-2xl">{friend.avatar}</div>
+                      <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-white ${
+                        friend.isOnline ? 'bg-green-400' : 'bg-gray-400'
+                      }`}></div>
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-800 dark:text-gray-200">{friend.name}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        {friend.isReading ? '📖 Reading together' : 'Online'}
                       </div>
                     </div>
-                  )}
-                  
-                  {isScreenSharing && (
-                    <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
-                      <Share2 className="w-4 h-4" />
-                      Sharing Screen
-                    </div>
-                  )}
-                </div>
+                    {friend.isReading && (
+                      <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                    )}
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
 
-                {/* Video Controls */}
-                <div className="flex justify-center gap-4">
+            {/* Reading Together Controls */}
+            <Card className="story-card">
+              <CardHeader>
+                <CardTitle className="text-xl font-bold text-gray-800 dark:text-gray-200">
+                  Read Together
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-2 gap-3">
                   <Button
                     onClick={toggleVideo}
-                    className={`rounded-full p-4 ${isVideoOn ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'} text-white`}
+                    variant={isVideoOn ? "default" : "outline"}
+                    className={`rounded-2xl ${isVideoOn ? 'bg-purple-500 hover:bg-purple-600 text-white' : ''}`}
                   >
-                    {isVideoOn ? <VideoOff className="w-5 h-5" /> : <Video className="w-5 h-5" />}
+                    {isVideoOn ? <Video className="w-4 h-4 mr-2" /> : <VideoOff className="w-4 h-4 mr-2" />}
+                    Camera
                   </Button>
-                  
                   <Button
                     onClick={toggleAudio}
-                    className={`rounded-full p-4 ${isAudioOn ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'} text-white`}
+                    variant={isAudioOn ? "default" : "outline"}
+                    className={`rounded-2xl ${isAudioOn ? 'bg-blue-500 hover:bg-blue-600 text-white' : ''}`}
                   >
-                    {isAudioOn ? <Mic className="w-5 h-5" /> : <MicOff className="w-5 h-5" />}
-                  </Button>
-                  
-                  <Button
-                    onClick={toggleScreenShare}
-                    className={`rounded-full p-4 ${isScreenSharing ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-500 hover:bg-gray-600'} text-white`}
-                  >
-                    <Share2 className="w-5 h-5" />
+                    {isAudioOn ? <Mic className="w-4 h-4 mr-2" /> : <MicOff className="w-4 h-4 mr-2" />}
+                    Voice
                   </Button>
                 </div>
+                <Button
+                  onClick={toggleScreenShare}
+                  variant={isScreenSharing ? "default" : "outline"}
+                  className={`w-full rounded-2xl ${isScreenSharing ? 'bg-green-500 hover:bg-green-600 text-white' : ''}`}
+                >
+                  {isScreenSharing ? <MonitorOff className="w-4 h-4 mr-2" /> : <Monitor className="w-4 h-4 mr-2" />}
+                  {isScreenSharing ? 'Stop Sharing' : 'Share Screen'}
+                </Button>
+                <Button
+                  onClick={startReadingTogether}
+                  className="w-full btn-bedtime bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-2xl"
+                >
+                  <BookOpen className="w-4 h-4 mr-2" />
+                  Start Reading Together
+                </Button>
               </CardContent>
             </Card>
           </div>
 
-          {/* Chat Section */}
-          <div className="lg:col-span-1">
-            <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-lg h-96 flex flex-col">
-              <CardContent className="p-4 flex-1 flex flex-col">
-                <h3 className="font-bold text-lg mb-4 text-gray-800 dark:text-gray-200">Chat</h3>
-                
-                <div className="flex-1 overflow-y-auto space-y-3 mb-4">
-                  {messages.map(msg => (
-                    <div key={msg.id} className="text-sm">
-                      <div className="flex justify-between items-start">
-                        <span className="font-semibold text-purple-600 dark:text-purple-400">{msg.user}</span>
-                        <span className="text-xs text-gray-500">{msg.time}</span>
+          {/* Center Panel - Chat & Video */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Video Area */}
+            <Card className="story-card">
+              <CardContent className="p-6">
+                <div className="relative">
+                  {isVideoOn ? (
+                    <div className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-2xl flex items-center justify-center">
+                      <video
+                        ref={videoRef}
+                        className="w-full h-full object-cover rounded-2xl"
+                        autoPlay
+                        muted
+                        playsInline
+                      />
+                      <div className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                        Your Camera
                       </div>
-                      <p className="text-gray-700 dark:text-gray-300 mt-1">{msg.text}</p>
+                    </div>
+                  ) : (
+                    <div className="aspect-video bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/50 dark:to-pink-900/50 rounded-2xl flex items-center justify-center">
+                      <div className="text-center">
+                        <Camera className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                        <p className="text-gray-600 dark:text-gray-400">Camera is off</p>
+                        <Button
+                          onClick={toggleVideo}
+                          className="mt-4 rounded-2xl bg-purple-500 hover:bg-purple-600 text-white"
+                        >
+                          Turn On Camera
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Chat Area */}
+            <Card className="story-card">
+              <CardHeader>
+                <CardTitle className="text-xl font-bold text-gray-800 dark:text-gray-200">
+                  Community Chat
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="h-96 overflow-y-auto space-y-4 mb-4">
+                  {messages.map(message => (
+                    <div key={message.id} className={`flex ${message.user === 'You' ? 'justify-end' : 'justify-start'}`}>
+                      <div className={`max-w-xs lg:max-w-md p-3 rounded-2xl ${
+                        message.user === 'You' 
+                          ? 'bg-purple-500 text-white' 
+                          : 'bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm'
+                      }`}>
+                        <div className="font-medium text-sm mb-1">
+                          {message.user}
+                        </div>
+                        <div className="text-sm">
+                          {message.type === 'link' ? (
+                            <a href={message.text} target="_blank" rel="noopener noreferrer" 
+                               className="text-blue-500 hover:underline">
+                              {message.text}
+                            </a>
+                          ) : (
+                            message.text
+                          )}
+                        </div>
+                        <div className={`text-xs mt-1 ${
+                          message.user === 'You' ? 'text-purple-100' : 'text-gray-500'
+                        }`}>
+                          {message.timestamp.toLocaleTimeString()}
+                        </div>
+                      </div>
                     </div>
                   ))}
+                  <div ref={messagesEndRef} />
                 </div>
-
+                
                 <div className="flex gap-2">
                   <Input
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    value={currentMessage}
+                    onChange={(e) => setCurrentMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder="Type your message..."
-                    className="flex-1"
+                    className="flex-1 rounded-2xl border-purple-200 dark:border-purple-700 focus:border-purple-400 dark:focus:border-purple-500"
                   />
                   <Button
-                    onClick={sendMessage}
-                    className="bg-gradient-to-r from-purple-400 to-pink-400 hover:from-purple-500 hover:to-pink-500 text-white rounded-full px-4"
+                    onClick={handleSendMessage}
+                    className="rounded-2xl bg-purple-500 hover:bg-purple-600 text-white"
                   >
                     <Send className="w-4 h-4" />
                   </Button>
@@ -212,46 +368,41 @@ const Discussion = () => {
           </div>
         </div>
 
-        {/* Quick Story Share */}
-        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-lg mt-6">
-          <CardContent className="p-6">
-            <h3 className="font-bold text-lg mb-4 text-gray-800 dark:text-gray-200">Quick Story Share</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Button
-                onClick={() => navigate('/reader/1')}
-                variant="outline"
-                className="p-4 h-auto bg-white/60 dark:bg-gray-700/60 hover:bg-white/80"
-              >
-                <div className="text-center">
-                  <div className="text-lg font-semibold mb-1">The Wise Crow</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Share this story</div>
+        {/* Add Friend Modal */}
+        {showAddFriend && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+            <Card className="max-w-md story-card">
+              <CardHeader>
+                <CardTitle className="text-xl font-bold text-gray-800 dark:text-gray-200">
+                  Add New Friend
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <Input
+                  value={newFriendName}
+                  onChange={(e) => setNewFriendName(e.target.value)}
+                  placeholder="Enter friend's name"
+                  className="rounded-2xl border-purple-200 dark:border-purple-700 focus:border-purple-400 dark:focus:border-purple-500"
+                />
+                <div className="flex gap-2">
+                  <Button
+                    onClick={addFriend}
+                    className="flex-1 btn-bedtime bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-2xl"
+                  >
+                    Add Friend
+                  </Button>
+                  <Button
+                    onClick={() => setShowAddFriend(false)}
+                    variant="outline"
+                    className="flex-1 rounded-2xl border-purple-200 dark:border-purple-700"
+                  >
+                    Cancel
+                  </Button>
                 </div>
-              </Button>
-              
-              <Button
-                onClick={() => navigate('/reader/2')}
-                variant="outline"
-                className="p-4 h-auto bg-white/60 dark:bg-gray-700/60 hover:bg-white/80"
-              >
-                <div className="text-center">
-                  <div className="text-lg font-semibold mb-1">Birbal's Wisdom</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Share this story</div>
-                </div>
-              </Button>
-              
-              <Button
-                onClick={() => navigate('/reader/3')}
-                variant="outline"
-                className="p-4 h-auto bg-white/60 dark:bg-gray-700/60 hover:bg-white/80"
-              >
-                <div className="text-center">
-                  <div className="text-lg font-semibold mb-1">Golden Fish</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Share this story</div>
-                </div>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );

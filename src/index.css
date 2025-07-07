@@ -1,91 +1,100 @@
 
+/* Import custom fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Comic+Neue:wght@300;400;700&family=Nunito:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Import custom fonts */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Comic+Neue:wght@300;400;700&display=swap');
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Bedtime Stories Color Palette */
+    --background: 280 20% 98%;
+    --foreground: 280 10% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 280 10% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 280 10% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 280 50% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 320 40% 95%;
+    --secondary-foreground: 280 10% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 280 15% 95%;
+    --muted-foreground: 280 10% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 200 50% 90%;
+    --accent-foreground: 280 10% 15%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 280 15% 90%;
+    --input: 280 15% 90%;
+    --ring: 280 50% 60%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Bedtime specific colors */
+    --bedtime-purple: 280 50% 60%;
+    --bedtime-pink: 320 50% 70%;
+    --bedtime-blue: 200 50% 70%;
+    --bedtime-yellow: 45 80% 70%;
+    --bedtime-orange: 25 80% 70%;
+
+    --sidebar-background: 280 20% 98%;
+    --sidebar-foreground: 280 10% 15%;
+    --sidebar-primary: 280 50% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 320 40% 95%;
+    --sidebar-accent-foreground: 280 10% 15%;
+    --sidebar-border: 280 15% 90%;
+    --sidebar-ring: 280 50% 60%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 280 20% 8%;
+    --foreground: 280 10% 90%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 280 15% 12%;
+    --card-foreground: 280 10% 90%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 280 15% 12%;
+    --popover-foreground: 280 10% 90%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 280 50% 70%;
+    --primary-foreground: 280 20% 8%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 320 30% 20%;
+    --secondary-foreground: 280 10% 90%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 280 15% 20%;
+    --muted-foreground: 280 10% 70%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 200 30% 25%;
+    --accent-foreground: 280 10% 90%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 280 10% 90%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 280 15% 25%;
+    --input: 280 15% 25%;
+    --ring: 280 50% 70%;
+
+    --sidebar-background: 280 20% 8%;
+    --sidebar-foreground: 280 10% 90%;
+    --sidebar-primary: 280 50% 70%;
+    --sidebar-primary-foreground: 280 20% 8%;
+    --sidebar-accent: 320 30% 20%;
+    --sidebar-accent-foreground: 280 10% 90%;
+    --sidebar-border: 280 15% 25%;
+    --sidebar-ring: 280 50% 70%;
   }
 }
 
@@ -96,13 +105,23 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Fredoka', sans-serif;
+    font-family: 'Nunito', sans-serif;
     line-height: 1.6;
+    background: linear-gradient(135deg, hsl(280 20% 98%) 0%, hsl(320 20% 96%) 50%, hsl(200 20% 97%) 100%);
+  }
+
+  .dark body {
+    background: linear-gradient(135deg, hsl(280 20% 8%) 0%, hsl(320 20% 6%) 50%, hsl(200 20% 7%) 100%);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Comic Neue', cursive;
-    font-weight: 700;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    color: hsl(280 10% 15%);
+  }
+
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: hsl(280 10% 90%);
   }
 
   /* Smooth scrolling */
@@ -116,17 +135,17 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(139, 92, 246, 0.1);
     border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #f59e0b, #ec4899);
+    background: linear-gradient(45deg, hsl(280 50% 60%), hsl(320 50% 70%));
     border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, #d97706, #db2777);
+    background: linear-gradient(45deg, hsl(280 50% 50%), hsl(320 50% 60%));
   }
 
   /* Selection color */
@@ -139,40 +158,66 @@
 /* Custom animations and effects */
 @layer components {
   .glass-effect {
-    @apply bg-white/20 backdrop-blur-sm border border-white/20;
+    @apply bg-white/30 backdrop-blur-md border border-white/30 shadow-xl;
+  }
+
+  .dark .glass-effect {
+    @apply bg-gray-800/30 border-gray-700/30;
   }
 
   .text-gradient {
-    @apply bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent;
   }
 
   .hover-lift {
-    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl;
   }
 
   .card-gradient {
-    @apply bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-800/80 dark:to-gray-900/60;
+    @apply bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/90 dark:to-gray-900/70;
+  }
+
+  /* Bedtime specific gradients */
+  .bedtime-gradient {
+    background: linear-gradient(135deg, hsl(280 50% 60%) 0%, hsl(320 50% 70%) 50%, hsl(200 50% 70%) 100%);
+  }
+
+  .bedtime-gradient-soft {
+    background: linear-gradient(135deg, hsl(280 30% 95%) 0%, hsl(320 30% 95%) 50%, hsl(200 30% 95%) 100%);
+  }
+
+  .dark .bedtime-gradient-soft {
+    background: linear-gradient(135deg, hsl(280 20% 15%) 0%, hsl(320 20% 15%) 50%, hsl(200 20% 15%) 100%);
   }
 
   /* Button effects */
-  .btn-magical {
-    @apply relative overflow-hidden transition-all duration-300;
+  .btn-bedtime {
+    @apply relative overflow-hidden transition-all duration-300 rounded-2xl font-semibold;
   }
 
-  .btn-magical::before {
+  .btn-bedtime::before {
     content: '';
     @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
     transform: translateX(-100%);
     transition: transform 0.6s ease;
   }
 
-  .btn-magical:hover::before {
+  .btn-bedtime:hover::before {
     transform: translateX(100%);
+  }
+
+  /* Story card effects */
+  .story-card {
+    @apply bg-white/80 backdrop-blur-sm border border-white/30 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300;
+  }
+
+  .dark .story-card {
+    @apply bg-gray-800/80 border-gray-700/30;
   }
 
   /* Story text effects */
   .story-text {
-    @apply text-lg leading-relaxed;
+    @apply text-lg leading-relaxed font-medium;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 
@@ -184,6 +229,35 @@
   .mascot-celebrate {
     animation: bounce-gentle 0.6s ease-in-out 3;
   }
+
+  /* Bedtime specific animations */
+  .twinkle {
+    animation: twinkle 2s ease-in-out infinite alternate;
+  }
+
+  .float-gentle {
+    animation: float-gentle 4s ease-in-out infinite;
+  }
+
+  .glow-soft {
+    animation: glow-soft 3s ease-in-out infinite alternate;
+  }
+}
+
+/* Custom keyframes for bedtime theme */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+@keyframes glow-soft {
+  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.6); }
 }
 
 /* Responsive typography */
@@ -199,7 +273,7 @@
   }
 }
 
-/* Loading states */
+/* Loading shimmer effect */
 .loading-shimmer {
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   background-size: 200% 100%;
@@ -207,19 +281,15 @@
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
-/* Focus states for accessibility */
+/* Focus styles */
 button:focus-visible,
 input:focus-visible,
-[tabindex]:focus-visible {
-  @apply outline-none ring-2 ring-purple-400 ring-offset-2 ring-offset-white dark:ring-offset-gray-800;
+textarea:focus-visible {
+  @apply outline-none ring-2 ring-purple-500 ring-offset-2;
 }
 
 /* Print styles */
@@ -227,7 +297,7 @@ input:focus-visible,
   .no-print {
     display: none !important;
   }
-  
+
   body {
     background: white !important;
     color: black !important;

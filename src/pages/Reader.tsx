@@ -2,47 +2,42 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, ArrowRight, Play, Pause, Volume2, Star } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Play, Pause, Volume2, Star, Eye, EyeOff, Mic, Sparkles } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import MascotOwl from '@/components/MascotOwl';
+import VoiceAssistant from '@/components/VoiceAssistant';
+import AchievementCelebration from '@/components/AchievementCelebration';
 
 const storyContent: { [key: string]: any } = {
   '1': {
     title: "The Wise Crow and the Pot",
+    moral: "Never give up. Use your intelligence to solve problems!",
     pages: [
       {
         text: "Once upon a time, in a hot summer day, a thirsty crow was flying around looking for water. The sun was blazing hot, and the poor crow's throat was very dry.",
         images: [
-          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
-          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
-          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+          "/story-1-page-1.jpg"
         ],
         narration: "Once upon a time, in a hot summer day, a thirsty crow was flying around looking for water."
       },
       {
         text: "Finally, the crow spotted a pot under a tree. He flew down quickly, hoping to find water. But when he looked inside, there was only a little bit of water at the bottom - too low for his beak to reach!",
         images: [
-          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600",
-          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600",
-          "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600"
+          "/story-1-page-2.jpg"
         ],
         narration: "Finally, the crow spotted a pot under a tree. He flew down quickly, hoping to find water."
       },
       {
         text: "The clever crow didn't give up. He noticed small stones scattered around the pot. 'I have an idea!' he thought. One by one, he picked up stones with his beak and dropped them into the pot.",
         images: [
-          "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600",
-          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
-          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600"
+          "/story-1-page-3.jpg"
         ],
         narration: "The clever crow didn't give up. He noticed small stones scattered around the pot."
       },
       {
         text: "As more stones fell into the pot, the water level began to rise higher and higher. Soon, the water reached the top where the crow could easily drink it. The wise crow had solved his problem with patience and cleverness!",
         images: [
-          "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600",
-          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600",
-          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+          "/story-1-page-4.jpg"
         ],
         narration: "As more stones fell into the pot, the water level began to rise higher and higher."
       }
@@ -50,6 +45,7 @@ const storyContent: { [key: string]: any } = {
   },
   '2': {
     title: "Birbal's Clever Solution",
+    moral: "Wisdom and clever thinking can solve even the trickiest problems.",
     pages: [
       {
         text: "Emperor Akbar had lost his precious ring in the royal garden. He was very upset and called for his wisest advisor, Birbal, to help find it.",
@@ -91,6 +87,7 @@ const storyContent: { [key: string]: any } = {
   },
   '3': {
     title: "The Golden Fish",
+    moral: "Kindness and generosity bring happiness to everyone.",
     pages: [
       {
         text: "A poor fisherman went to the river every day to catch fish for his family. One day, his net felt unusually heavy. When he pulled it up, he found a beautiful golden fish!",
@@ -132,6 +129,7 @@ const storyContent: { [key: string]: any } = {
   },
   '4': {
     title: "The Magical Banyan Tree",
+    moral: "Magic is everywhere if you believe and look for it!",
     pages: [
       {
         text: "In a small village, there stood an ancient banyan tree that was said to be magical. Children often played under its shade, but they never knew its secret power.",
@@ -173,6 +171,7 @@ const storyContent: { [key: string]: any } = {
   },
   '5': {
     title: "The Brave Little Sparrow",
+    moral: "Bravery means helping others, even when you're scared.",
     pages: [
       {
         text: "In a bustling city, a little sparrow named Cheeku lived on a tall building. Unlike other sparrows, Cheeku was afraid of flying high and always stayed close to the ground.",
@@ -872,6 +871,14 @@ const difficultWords: { [key: string]: any } = {
   }
 };
 
+// For all stories, update each page's images array to:
+// images: [`/story-{storyId}-page-{pageIndex+1}.jpg`]
+Object.keys(storyContent).forEach(storyId => {
+  storyContent[storyId].pages.forEach((page, idx) => {
+    page.images = [`/story-${storyId}-page-${idx + 1}.jpg`];
+  });
+});
+
 const Reader = () => {
   const { storyId } = useParams();
   const navigate = useNavigate();
@@ -880,6 +887,10 @@ const Reader = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
   const [showCelebration, setShowCelebration] = useState(false);
+  const [isARVRMode, setIsARVRMode] = useState(false);
+  const [showVoiceAssistant, setShowVoiceAssistant] = useState(false);
+  const [showAchievement, setShowAchievement] = useState(false);
+  const [userProgress, setUserProgress] = useState<any>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const speechSynthesis = window.speechSynthesis;
 
@@ -889,6 +900,10 @@ const Reader = () => {
     if (!story) {
       navigate('/library');
     }
+    
+    // Load user progress
+    const stats = JSON.parse(localStorage.getItem('storyscape_stats') || '{}');
+    setUserProgress(stats);
   }, [story, navigate]);
 
   useEffect(() => {
@@ -909,26 +924,19 @@ const Reader = () => {
 
   const handleNextPage = () => {
     if (isLastPage) {
-      setShowCelebration(true);
-      
+      setShowAchievement(true);
       const stats = JSON.parse(localStorage.getItem('storyscape_stats') || '{}');
       stats.stars = (stats.stars || 0) + 5;
       stats.completedStories = stats.completedStories || [];
-      
       if (!stats.completedStories.includes(storyId)) {
         stats.completedStories.push(storyId);
       }
-      
       localStorage.setItem('storyscape_stats', JSON.stringify(stats));
-      
+      setUserProgress(stats);
       toast({
         title: "Story Complete! 🎉",
         description: "You earned 5 stars! Well done, young reader!"
       });
-      
-      setTimeout(() => {
-        navigate('/library');
-      }, 3000);
     } else {
       setCurrentPage(currentPage + 1);
     }
@@ -994,35 +1002,48 @@ const Reader = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-pink-50 to-blue-100 dark:from-purple-900 dark:via-blue-900 dark:to-indigo-900 p-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen p-4 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 bedtime-gradient-soft opacity-30"></div>
+      <div className="absolute top-20 left-10 w-20 h-20 bg-purple-300/20 rounded-full blur-xl"></div>
+      <div className="absolute top-40 right-20 w-32 h-32 bg-pink-300/20 rounded-full blur-xl"></div>
+      <div className="absolute bottom-20 left-1/4 w-24 h-24 bg-blue-300/20 rounded-full blur-xl"></div>
+      
+      <div className="max-w-4xl mx-auto relative z-10">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
             <Button
               onClick={() => navigate('/library')}
               variant="ghost"
               size="sm"
-              className="rounded-full p-2 hover:bg-white/20"
+              className="rounded-full p-2 hover:bg-white/20 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm"
             >
               <ArrowLeft className="w-5 h-5" />
             </Button>
             
             <div>
-              <h1 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+              <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
                 {story.title}
               </h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">
                 Page {currentPage + 1} of {story.pages.length}
               </p>
             </div>
           </div>
           
-          <MascotOwl size={40} animate={showCelebration} />
+          <div className="relative">
+            <MascotOwl size={40} animate={showCelebration} className="animate-float-gentle" />
+            {showCelebration && (
+              <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center animate-twinkle">
+                <Star className="w-3 h-3 text-white" />
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Story Content */}
-        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-2xl mb-6">
+        <Card className="story-card mb-8">
           <CardContent className="p-8">
             <div className="grid md:grid-cols-2 gap-8">
               {/* Story Images */}
@@ -1031,14 +1052,14 @@ const Reader = () => {
                   <img
                     src={currentPageData.images[currentImageIndex]}
                     alt={`Page ${currentPage + 1} - Image ${currentImageIndex + 1}`}
-                    className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg"
+                    className="w-full h-64 md:h-80 object-cover rounded-3xl shadow-lg"
                   />
                   
                   {currentPageData.images.length > 1 && (
                     <>
                       <Button
                         onClick={prevImage}
-                        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2"
+                        className="absolute left-3 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 backdrop-blur-sm"
                         size="sm"
                       >
                         <ArrowLeft className="w-4 h-4" />
@@ -1046,18 +1067,18 @@ const Reader = () => {
                       
                       <Button
                         onClick={nextImage}
-                        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2"
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 backdrop-blur-sm"
                         size="sm"
                       >
                         <ArrowRight className="w-4 h-4" />
                       </Button>
                       
-                      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+                      <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
                         {currentPageData.images.map((_: any, index: number) => (
                           <div
                             key={index}
-                            className={`w-2 h-2 rounded-full ${
-                              index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                              index === currentImageIndex ? 'bg-white shadow-lg' : 'bg-white/50'
                             }`}
                           />
                         ))}
@@ -1069,7 +1090,7 @@ const Reader = () => {
               
               {/* Story Text */}
               <div className="order-1 md:order-2 flex flex-col justify-center">
-                <div className="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
+                <div className="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6 story-text">
                   {renderTextWithClickableWords(currentPageData.text)}
                 </div>
                 
@@ -1077,13 +1098,49 @@ const Reader = () => {
                 <div className="flex items-center gap-4 mb-6">
                   <Button
                     onClick={toggleAudio}
-                    className="bg-gradient-to-r from-purple-400 to-pink-400 hover:from-purple-500 hover:to-pink-500 text-white rounded-full px-6"
+                    className="btn-bedtime bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-2xl px-6"
                   >
                     {isPlaying ? <Pause className="w-4 h-4 mr-2" /> : <Play className="w-4 h-4 mr-2" />}
                     {isPlaying ? 'Pause' : 'Play'} Audio
                   </Button>
                   <Volume2 className="w-5 h-5 text-gray-600 dark:text-gray-400" />
                 </div>
+
+                {/* AR/VR Mode Toggle */}
+                <div className="flex items-center gap-4 mb-6">
+                  <Button
+                    onClick={() => setIsARVRMode(!isARVRMode)}
+                    className={`btn-bedtime rounded-2xl px-6 ${
+                      isARVRMode 
+                        ? 'bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white' 
+                        : 'bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border-purple-200 dark:border-purple-700'
+                    }`}
+                  >
+                    {isARVRMode ? <Eye className="w-4 h-4 mr-2" /> : <EyeOff className="w-4 h-4 mr-2" />}
+                    {isARVRMode ? 'AR/VR Mode ON' : 'AR/VR Mode'}
+                  </Button>
+                  
+                  <Button
+                    onClick={() => setShowVoiceAssistant(!showVoiceAssistant)}
+                    className="btn-bedtime bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-2xl px-6"
+                  >
+                    <Mic className="w-4 h-4 mr-2" />
+                    Reading Buddy
+                  </Button>
+                </div>
+
+                {/* AR/VR Mode Info */}
+                {isARVRMode && (
+                  <div className="mb-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border border-green-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Sparkles className="w-5 h-5 text-green-600" />
+                      <h4 className="font-semibold text-green-800">AR/VR Mode Active</h4>
+                    </div>
+                    <p className="text-sm text-green-700">
+                      Immerse yourself in the story! Point your device at different surfaces to see the story come to life in augmented reality.
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </CardContent>
@@ -1095,7 +1152,7 @@ const Reader = () => {
             onClick={handlePrevPage}
             disabled={currentPage === 0}
             variant="outline"
-            className="rounded-full px-6 py-3 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm disabled:opacity-50"
+            className="btn-bedtime rounded-2xl px-6 py-3 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm disabled:opacity-50 border-purple-200 dark:border-purple-700"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Previous
@@ -1107,7 +1164,7 @@ const Reader = () => {
                 key={index}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentPage
-                    ? 'bg-purple-500 scale-125'
+                    ? 'bg-purple-500 scale-125 shadow-lg'
                     : index < currentPage
                     ? 'bg-green-400'
                     : 'bg-gray-300 dark:bg-gray-600'
@@ -1118,7 +1175,7 @@ const Reader = () => {
           
           <Button
             onClick={handleNextPage}
-            className="rounded-full px-6 py-3 bg-gradient-to-r from-green-400 to-blue-400 hover:from-green-500 hover:to-blue-500 text-white"
+            className="btn-bedtime rounded-2xl px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white"
           >
             {isLastPage ? (
               <>
@@ -1135,7 +1192,7 @@ const Reader = () => {
         {/* Word Definition Popup */}
         {selectedWord && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-            <Card className="max-w-md bg-white dark:bg-gray-800 border-0 shadow-2xl">
+            <Card className="max-w-md story-card">
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-purple-600 dark:text-purple-400">
                   {selectedWord}
@@ -1151,7 +1208,7 @@ const Reader = () => {
                 </p>
                 <Button
                   onClick={() => setSelectedWord(null)}
-                  className="w-full bg-gradient-to-r from-purple-400 to-pink-400 hover:from-purple-500 hover:to-pink-500 text-white rounded-full"
+                  className="w-full btn-bedtime bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-2xl"
                 >
                   Got it!
                 </Button>
@@ -1162,15 +1219,55 @@ const Reader = () => {
 
         {/* Celebration Overlay */}
         {showCelebration && (
-          <div className="fixed inset-0 bg-gradient-to-br from-yellow-400/90 to-pink-400/90 flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-gradient-to-br from-purple-500/90 to-pink-500/90 flex items-center justify-center z-50">
             <div className="text-center text-white">
-              <MascotOwl size={120} className="mx-auto mb-6" />
+              <div className="relative inline-block mb-6">
+                <MascotOwl size={120} className="animate-float-gentle" />
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center animate-twinkle">
+                  <Star className="w-4 h-4 text-white" />
+                </div>
+              </div>
               <h2 className="text-4xl font-bold mb-4">🎉 Amazing Work! 🎉</h2>
-              <p className="text-xl mb-2">You completed the story!</p>
+              <p className="text-xl mb-2">You completed the bedtime story!</p>
               <p className="text-lg">You earned 5 stars! ⭐⭐⭐⭐⭐</p>
+              {story.moral && (
+                <div className="mt-6 p-4 bg-white/80 dark:bg-gray-800/80 rounded-2xl shadow-lg text-purple-700 dark:text-purple-300 max-w-lg mx-auto">
+                  <h3 className="text-xl font-bold mb-2 text-gradient">Moral of the Story</h3>
+                  <p className="text-lg italic">"{story.moral}"</p>
+                </div>
+              )}
+              <Button
+                onClick={() => navigate('/library')}
+                className="mt-8 btn-bedtime bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-2xl px-8 py-3 text-lg font-semibold"
+              >
+                Back to Library
+              </Button>
             </div>
           </div>
         )}
+
+        {/* Voice Assistant */}
+        <VoiceAssistant
+          isActive={showVoiceAssistant}
+          onToggle={() => setShowVoiceAssistant(!showVoiceAssistant)}
+          currentPage={`${currentPage + 1}`}
+          currentStory={story.title}
+          userProgress={userProgress}
+          onNavigate={navigate}
+        />
+
+        {/* Achievement Celebration */}
+        <AchievementCelebration
+          isVisible={showAchievement}
+          onClose={() => setShowAchievement(false)}
+          achievement={{
+            title: "Story Completed!",
+            description: `Congratulations! You've finished "${story.title}" and learned a valuable lesson.`,
+            type: "story_complete",
+            stars: 5,
+            gems: 2
+          }}
+        />
       </div>
     </div>
   );
