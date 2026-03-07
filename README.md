@@ -6,6 +6,24 @@
 
 A delightful reading platform designed for children aged 6-14, featuring interactive stories, progress tracking, and engaging rewards system.
 
+## 📑 Project Documentation
+
+For a detailed explanation of the system design, architecture, and implementation, please refer to the complete project report.
+
+📘 **Project Report (PDF)**  
+https://github.com/thedgarg31/starry-tales-adventure/blob/main/storyscape-project-report.pdf
+
+The report covers:
+
+- 📌 Problem Statement and Motivation  
+- 🏗 System Architecture and Design  
+- 🛠 Technology Stack and Implementation Details  
+- 🎨 UI/UX Design of the Reading Platform  
+- 📊 Features such as Story Library, Audio Narration, and Progress Tracking  
+- 🔮 Future Scope including **AR/VR immersive reading experiences**
+
+The goal of StoryScape is to make reading **interactive, engaging, and educational for children**, combining storytelling with modern web technologies and gamified learning elements. Interactive storytelling platforms like these can improve children's engagement and comprehension by integrating multimedia elements such as audio, visuals, and interaction.
+
 ## ✨ Features
 
 - **📚 Interactive Story Library**: 25+ Indian children's stories with beautiful illustrations
