@@ -1,6 +1,9 @@
 
 # 🦉 StoryScape - Magical Reading Adventures
 
+## 🌐 Live Demo
+🔗 https://starry-tales-adventure.vercel.app/
+
 A delightful reading platform designed for children aged 6-14, featuring interactive stories, progress tracking, and engaging rewards system.
 
 ## ✨ Features
