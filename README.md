@@ -146,6 +146,12 @@ For full functionality, add audio files to the `public/audio/` directory:
 
 This project is licensed under the MIT License.
 
+## 👨‍💻 Author
+
+Daksh Garg  & Farhan Ahmed Siddique
+BTech CSE (Data Science) – Amity University  
+
+
 ## 🎉 Acknowledgments
 
 - Beautiful placeholder images from Unsplash
